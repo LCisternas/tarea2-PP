@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "P001",
+      "bloomLevel": "Comprensión",
+      "itemType": "MULTIPLE_CHOICE",
+      "question": "¿Cuál es la capital de Francia?",
+      "options": ["París","Londres","Berlín","Roma"],
+      "correctAnswer": 0,
+      "estimatedTimeSec": 30
+    },
+    {
+      "id": "V001",
+      "bloomLevel": "Conocimiento",
+      "itemType": "TRUE_FALSE",
+      "question": "El Sol es una estrella.",
+      "options": ["Verdadero","Falso"],
+      "correctAnswer": 0,
+      "estimatedTimeSec": 15
+    }
+  ]
+}

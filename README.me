@@ -1,0 +1,119 @@
+# Bloom Test App
+
+Esta aplicación de escritorio Java (Swing) permite cargar un archivo JSON con preguntas de opción múltiple y verdadero/falso, recorrerlas de forma interactiva, y mostrar estadísticas de aciertos.
+
+## Requisitos
+
+* **Java 11** (OpenJDK o Oracle JDK)
+* **Maven** 3.x
+
+> En macOS, puedes instalar Java 11 y Maven vía Homebrew:
+>
+> ```bash
+> brew install openjdk@11 maven
+> ```
+
+## Estructura del proyecto
+
+```
+bloom-test-app/
+├─ pom.xml
+├─ README.md
+└─ src/
+   └─ main/
+      └─ java/
+         └─ com/miempresa/bloom/
+            ├─ backend/
+            │  ├─ TestManager.java
+            │  └─ model/
+            │     ├─ Item.java
+            │     └─ ItemType.java
+            └─ frontend/
+               ├─ MainFrame.java
+               ├─ QuizFrame.java
+               ├─ SummaryFrame.java
+               └─ ReviewFrame.java
+```
+
+## Archivo de ítems (`items.json`)
+
+Coloca junto al JAR un archivo `items.json` con la siguiente estructura:
+
+```json
+{
+  "items": [
+    {
+      "id": "P001",
+      "bloomLevel": "Comprensión",
+      "itemType": "MULTIPLE_CHOICE",
+      "question": "¿Cuál es la capital de Francia?",
+      "options": ["París", "Londres", "Berlín", "Roma"],
+      "correctAnswer": 0,
+      "estimatedTimeSec": 30
+    },
+    {
+      "id": "V001",
+      "bloomLevel": "Conocimiento",
+      "itemType": "TRUE_FALSE",
+      "question": "El Sol es una estrella.",
+      "options": ["Verdadero", "Falso"],
+      "correctAnswer": 0,
+      "estimatedTimeSec": 15
+    }
+  ]
+}
+```
+
+* **id**: Identificador único.
+* **bloomLevel**: Nivel de Bloom (p.ej. Conocimiento, Comprensión).
+* **itemType**: `MULTIPLE_CHOICE` o `TRUE_FALSE`.
+* **question**: Texto de la pregunta.
+* **options**: Array de cadenas con las opciones.
+* **correctAnswer**: Índice (0-based) de la opción correcta.
+* **estimatedTimeSec**: Tiempo estimado en segundos.
+
+## Compilación y empaquetado
+
+1. Abre terminal en la raíz del proyecto.
+2. Ejecuta:
+
+   ```bash
+   mvn clean package
+   ```
+3. Al finalizar, encontrarás el JAR en:
+
+   ```
+   ```
+
+target/bloom-test-app-1.0-SNAPSHOT.jar
+
+````
+
+## Ejecución
+
+1. Sitúate en la raíz donde está el JAR y el `items.json`:
+   ```bash
+   cd /ruta/a/bloom-test-app
+````
+
+2. Lanza la aplicación:
+
+   ```bash
+   java -jar target/bloom-test-app-1.0-SNAPSHOT.jar
+   ```
+
+## Uso de la interfaz
+
+1. **Seleccionar archivo**: Abre el selector y elige tu `items.json`.
+2. **Resumen inicial**: Muestra el total de ítems y tiempo estimado en minutos.
+3. **Iniciar prueba**: Habilita el flujo de preguntas.
+4. **Navegación de preguntas**:
+
+   * **Volver** / **Siguiente** para moverte entre ítems.
+   * En la última pregunta, el botón cambia a **Enviar respuestas**.
+5. **Resumen de resultados**: Muestra % de aciertos por nivel de Bloom y por tipo de ítem.
+6. **Revisar respuestas**: Lista cada ítem con la respuesta seleccionada y si fue correcta.
+
+---
+
+¡Listo! Con este README cualquiera podrá compilar, ejecutar y probar la aplicación de forma sencilla.
